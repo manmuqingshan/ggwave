@@ -26,6 +26,7 @@ if (EMSCRIPTEN)
     set(BUILD_SHARED_LIBS_DEFAULT OFF)
 
     option(GGWAVE_WASM_SINGLE_FILE "ggwave: embed WASM inside the generated ggwave.js" ON)
+    set(CMAKE_CXX_STANDARD 17)
 else()
     set(GGWAVE_SUPPORT_SDL2_DEFAULT ON)
     if (WIN32)
@@ -75,7 +76,9 @@ endif()
 
 # main
 
-set(CMAKE_CXX_STANDARD 11)
+if (NOT EMSCRIPTEN)
+  set(CMAKE_CXX_STANDARD 11)
+endif()
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 if (GGWAVE_ALL_WARNINGS)
